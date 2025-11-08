@@ -26,6 +26,8 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ onAddVehicle }) => {
 
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
+  const secondaryGalleryInputRef = useRef<HTMLInputElement>(null);
+  const secondaryCameraInputRef = useRef<HTMLInputElement>(null);
 
   const resetForm = useCallback(() => {
     setMatricula('');
@@ -293,10 +295,47 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ onAddVehicle }) => {
             </div>
           ))}
           {secondaryImages.length < MAX_SECONDARY_IMAGES && (
-            <label className="aspect-square bg-background rounded-lg flex items-center justify-center cursor-pointer border-2 border-dashed border-gray-600 hover:border-accent transition-colors">
-              <input type="file" multiple accept="image/*" onChange={handleSecondaryImageChange} className="hidden" />
+            <div className="aspect-square bg-background rounded-lg flex flex-col items-center justify-center gap-3 border-2 border-dashed border-gray-600 hover:border-accent transition-colors p-4 text-center">
               <PlusIcon className="h-8 w-8 text-gray-400" />
-            </label>
+              <p className="text-xs text-gray-400">Añadir fotos</p>
+              <div className="flex flex-col w-full gap-2">
+                <button
+                  type="button"
+                  onClick={() => secondaryCameraInputRef.current?.click()}
+                  disabled={isLoading}
+                  className="inline-flex items-center justify-center gap-2 px-3 py-1.5 bg-accent/10 text-accent rounded-md hover:bg-accent/20 transition-colors text-xs font-medium"
+                >
+                  <CameraIcon className="h-4 w-4" />
+                  Usar Cámara
+                </button>
+                <button
+                  type="button"
+                  onClick={() => secondaryGalleryInputRef.current?.click()}
+                  disabled={isLoading}
+                  className="inline-flex items-center justify-center gap-2 px-3 py-1.5 bg-gray-500/10 text-gray-300 rounded-md hover:bg-gray-500/20 transition-colors text-xs font-medium"
+                >
+                  Desde Galería
+                </button>
+              </div>
+              <input
+                ref={secondaryCameraInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                className="hidden"
+                onChange={handleSecondaryImageChange}
+                disabled={isLoading}
+              />
+              <input
+                ref={secondaryGalleryInputRef}
+                type="file"
+                multiple
+                accept="image/*"
+                className="hidden"
+                onChange={handleSecondaryImageChange}
+                disabled={isLoading}
+              />
+            </div>
           )}
         </div>
       </div>
