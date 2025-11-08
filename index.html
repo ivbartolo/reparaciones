@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF--8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor de Reparaciones</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            // Siguiendo la especificación de un sistema de diseño premium.
+            // Colores: Paleta oscura con un acento vibrante (sky blue).
+            colors: {
+              background: 'hsl(222.2 84% 4.9%)', // #09090b
+              foreground: 'hsl(210 40% 98%)',   // #fafafa
+              card: 'hsl(222.2 47.4% 11.2%)', // #111827
+              'card-foreground': 'hsl(210 40% 98%)',
+              primary: 'hsl(210 40% 98%)',
+              'primary-foreground': 'hsl(222.2 47.4% 11.2%)',
+              accent: {
+                DEFAULT: 'hsl(198.8 89.9% 51.2%)', // sky-500
+                foreground: 'hsl(210 40% 98%)'
+              },
+              destructive: {
+                DEFAULT: 'hsl(0 62.8% 30.6%)',
+                foreground: 'hsl(210 40% 98%)'
+              },
+            },
+            // Radios: Usamos valores consistentes. 20px para tarjetas principales.
+            borderRadius: {
+              lg: `var(--radius, 0.5rem)`,
+              md: `calc(var(--radius, 0.5rem) - 2px)`,
+              sm: 'calc(var(--radius, 0.5rem) - 4px)',
+              'card': '20px',
+            },
+            // Tipografía: Escala consistente en rems.
+            fontSize: {
+              'xs': ['0.75rem', { lineHeight: '1rem' }],    // 12px
+              'sm': ['0.875rem', { lineHeight: '1.25rem' }], // 14px
+              'base': ['1rem', { lineHeight: '1.5rem' }],     // 16px
+              'lg': ['1.125rem', { lineHeight: '1.75rem' }],// 18px
+              'xl': ['1.25rem', { lineHeight: '2rem' }],   // 20px
+              '2xl': ['1.5rem', { lineHeight: '2rem' }],
+              '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+            },
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-background text-foreground antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "Gestor de Reparaciones de Vehículos",
+  "description": "Una aplicación para crear y gestionar fichas de reparación de vehículos, incluyendo fotos de matrícula y daños, con análisis de matrícula por IA.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
