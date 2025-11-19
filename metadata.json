@@ -1,0 +1,7 @@
+{
+  "name": "Gestión de Reparaciones",
+  "description": "Aplicación de gestión de reparaciones de vehículos con reconocimiento de matrículas por IA, almacenamiento local y sincronización con Google Drive.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
