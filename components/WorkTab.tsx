@@ -146,10 +146,10 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
   };
 
   return (
-    <div className="h-full flex flex-col overflow-y-auto bg-slate-100">
+    <div className="h-full flex flex-col bg-slate-100 overflow-hidden">
       
       {/* --- 1st Quarter: Date & Main Input (OCR) --- */}
-      <div className="h-1/4 min-h-[160px] bg-white p-4 shadow-sm flex flex-col justify-center items-center relative border-b border-slate-200 z-20">
+      <div className="flex-shrink-0 min-h-[160px] bg-white p-4 shadow-sm flex flex-col justify-center items-center relative border-b border-slate-200 z-20">
         <input 
           type="date" 
           value={date}
@@ -216,7 +216,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 2nd & 3rd Quarter: Photo Grid (Up to 12) --- */}
-      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-[300px]">
+      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0">
         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
           {photos.map((photo, index) => (
             <div key={index} className="aspect-[4/3] relative group rounded-lg overflow-hidden shadow-sm border border-slate-200 bg-white">
@@ -270,19 +270,19 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 4th Quarter: Notes & Actions --- */}
-      <div className="h-1/4 min-h-[150px] bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)]">
+      <div className="flex-shrink-0 bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)]">
         {/* Notes Half */}
-        <div className="h-1/2 p-3 border-b border-slate-100">
+        <div className="p-3 border-b border-slate-100">
           <textarea 
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Añadir notas de la reparación..."
-            className="w-full h-full resize-none bg-slate-50 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="w-full h-20 resize-none bg-slate-50 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
           />
         </div>
 
         {/* Actions Half */}
-        <div className="h-1/2 p-3 flex items-center justify-between gap-3">
+        <div className="p-3 flex items-center justify-between gap-3">
            {initialData && (
              <button 
               onClick={handleDelete}
