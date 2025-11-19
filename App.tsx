@@ -26,7 +26,36 @@ const App: React.FC = () => {
 
   return (
     <div className="h-full flex flex-col bg-slate-100">
-      {/* Main Content Area - Scrollable */}
+      {/* Tabs Navigation - Top */}
+      <nav className="h-14 bg-white border-b border-slate-200 flex flex-row items-center shadow-sm z-10 sticky top-0">
+        <button
+          onClick={() => {
+             setEditingRecord(undefined);
+             setActiveTab(Tab.WORK);
+          }}
+          className={`flex-1 h-full flex items-center justify-center gap-2 transition-colors font-semibold ${
+            activeTab === Tab.WORK 
+              ? 'text-blue-600 bg-blue-50 border-b-2 border-blue-600' 
+              : 'text-slate-500 hover:bg-slate-50 border-b-2 border-transparent'
+          }`}
+        >
+          <Wrench size={20} />
+          <span>Trabajo</span>
+        </button>
+        <button
+          onClick={() => setActiveTab(Tab.RECORDS)}
+          className={`flex-1 h-full flex items-center justify-center gap-2 transition-colors font-semibold ${
+            activeTab === Tab.RECORDS 
+              ? 'text-blue-600 bg-blue-50 border-b-2 border-blue-600' 
+              : 'text-slate-500 hover:bg-slate-50 border-b-2 border-transparent'
+          }`}
+        >
+          <FolderOpen size={20} />
+          <span>Fichas</span>
+        </button>
+      </nav>
+
+      {/* Main Content Area */}
       <main className="flex-1 overflow-hidden relative">
         {activeTab === Tab.WORK ? (
           <WorkTab 
@@ -41,31 +70,6 @@ const App: React.FC = () => {
           <RecordsTab onEdit={handleEdit} />
         )}
       </main>
-
-      {/* Bottom Navigation */}
-      <nav className="h-16 bg-white border-t border-slate-200 flex flex-row justify-around items-center shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-10">
-        <button
-          onClick={() => {
-             setEditingRecord(undefined);
-             setActiveTab(Tab.WORK);
-          }}
-          className={`flex flex-col items-center justify-center w-1/2 h-full transition-colors ${
-            activeTab === Tab.WORK ? 'text-blue-600 bg-blue-50' : 'text-slate-500 hover:bg-slate-50'
-          }`}
-        >
-          <Wrench size={24} />
-          <span className="text-xs font-semibold mt-1">Trabajo</span>
-        </button>
-        <button
-          onClick={() => setActiveTab(Tab.RECORDS)}
-          className={`flex flex-col items-center justify-center w-1/2 h-full transition-colors ${
-            activeTab === Tab.RECORDS ? 'text-blue-600 bg-blue-50' : 'text-slate-500 hover:bg-slate-50'
-          }`}
-        >
-          <FolderOpen size={24} />
-          <span className="text-xs font-semibold mt-1">Fichas</span>
-        </button>
-      </nav>
     </div>
   );
 };

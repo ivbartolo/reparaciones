@@ -2,9 +2,17 @@ import { GoogleGenAI } from "@google/genai";
 
 const AI_PROMPT = "Extract the vehicle license plate number from this image. Return ONLY the alphanumeric text. Remove spaces or hyphens. Return 'UNKNOWN' if no plate is clearly visible.";
 
+// Variables are injected via vite.config.ts define option
+declare const process: {
+  env: {
+    API_KEY?: string;
+    GEMINI_API_KEY?: string;
+  };
+};
+
 export const extractLicensePlate = async (base64Image: string): Promise<string> => {
   try {
-    const apiKey = process.env.API_KEY;
+    const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.error("API Key missing");
       return "NO_API_KEY";
