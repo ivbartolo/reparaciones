@@ -13,8 +13,13 @@ declare const process: {
 export const extractLicensePlate = async (base64Image: string): Promise<string> => {
   try {
     const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      console.error("API Key missing");
+    console.log("API Key check:", {
+      API_KEY: process.env.API_KEY ? `Present (length: ${process.env.API_KEY.length})` : 'Missing',
+      GEMINI_API_KEY: process.env.GEMINI_API_KEY ? `Present (length: ${process.env.GEMINI_API_KEY.length})` : 'Missing'
+    });
+    
+    if (!apiKey || apiKey === 'undefined' || apiKey === '') {
+      console.error("API Key missing or invalid");
       return "NO_API_KEY";
     }
 
