@@ -146,10 +146,10 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
   };
 
   return (
-    <div className="h-full flex flex-col bg-slate-100 overflow-hidden">
+    <div className="h-full flex flex-col bg-slate-100">
       
       {/* --- 1st Quarter: Date & Main Input (OCR) --- */}
-      <div className="flex-shrink-0 min-h-[160px] bg-white p-4 shadow-sm flex flex-col justify-center items-center relative border-b border-slate-200 z-20">
+      <div className="flex-shrink-0 bg-white p-4 shadow-sm flex flex-col justify-center items-center relative border-b border-slate-200">
         <input 
           type="date" 
           value={date}
@@ -216,7 +216,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 2nd & 3rd Quarter: Photo Grid (Up to 12) --- */}
-      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0 pb-44 sm:pb-48">
+      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0" style={{ paddingBottom: '200px' }}>
         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
           {photos.map((photo, index) => (
             <div key={index} className="aspect-[4/3] relative group rounded-lg overflow-hidden shadow-sm border border-slate-200 bg-white">
@@ -269,8 +269,8 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
         </div>
       </div>
 
-      {/* --- 4th Quarter: Notes & Actions --- */}
-      <div className="sticky bottom-0 w-full bg-white border-t-2 border-slate-200 flex flex-col z-50 shadow-[0_-8px_30px_rgba(0,0,0,0.2)]">
+      {/* --- 4th Quarter: Notes & Actions - Fixed at bottom --- */}
+      <div className="fixed bottom-0 left-0 right-0 w-full bg-white border-t-2 border-slate-200 flex flex-col z-50 shadow-[0_-8px_30px_rgba(0,0,0,0.3)] safe-area-pb">
         {/* Notes */}
         <div className="px-4 pt-3 border-b border-slate-100">
           <textarea 
@@ -282,8 +282,8 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
           />
         </div>
 
-        {/* Actions - Fixed bottom with extra padding */}
-        <div className="px-4 pt-3 pb-6 sm:pb-6 flex flex-col sm:flex-row items-stretch gap-3 bg-white">
+        {/* Actions - Fixed bottom with safe area padding */}
+        <div className="px-4 pt-3 pb-4 sm:pb-6 flex flex-col sm:flex-row items-stretch gap-3 bg-white" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom) + 1rem)' }}>
           {initialData && (
             <button 
               onClick={handleDelete}

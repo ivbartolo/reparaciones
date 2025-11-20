@@ -1,2 +1,14 @@
 /* Estilos globales para la aplicación de gestión de reparaciones */
 
+/* Safe area support for mobile devices */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Ensure viewport height works correctly on mobile */
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
+
