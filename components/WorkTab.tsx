@@ -270,42 +270,42 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 4th Quarter: Notes & Actions --- */}
-      <div className="sticky bottom-0 bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)]">
-        {/* Notes Half */}
-        <div className="p-3 border-b border-slate-100">
+      <div className="sticky bottom-0 bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)] px-4">
+        {/* Notes */}
+        <div className="pt-3 border-b border-slate-100">
           <textarea 
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Añadir notas de la reparación..."
-            className="w-full h-20 resize-none bg-slate-50 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="w-full min-h-[64px] resize-none bg-slate-50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
           />
         </div>
 
-        {/* Actions Half */}
-        <div className="p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] flex items-center justify-between gap-3">
-           {initialData && (
-             <button 
+        {/* Actions */}
+        <div className="pb-[calc(1rem+env(safe-area-inset-bottom,0px))] pt-3 flex flex-col sm:flex-row items-stretch gap-3">
+          {initialData && (
+            <button 
               onClick={handleDelete}
-              className="flex-1 h-full bg-red-50 text-red-600 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 hover:bg-red-100 transition-colors"
-             >
-               <Trash2 size={18} />
-               Eliminar
-             </button>
-           )}
-           
-           <button 
+              className="sm:flex-1 h-12 bg-red-50 text-red-600 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-red-100 transition-colors"
+            >
+              <Trash2 size={18} />
+              Eliminar
+            </button>
+          )}
+          
+          <button 
             onClick={handleSave}
             disabled={isSaving || isSyncing}
-            className={`flex-[2] h-full rounded-lg font-bold text-sm flex items-center justify-center gap-2 text-white transition-colors shadow-lg
+            className={`sm:flex-[2] h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-white transition-all shadow-lg
               ${isSaving ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}
             `}
-           >
-             {isSaving ? (
-               <><Loader2 className="animate-spin" size={18} /> {isSyncing ? 'Selecciona cuenta...' : 'Guardando...'}</>
-             ) : (
-               <><Save size={18} /> {initialData ? 'Actualizar Ficha' : 'Guardar Ficha'}</>
-             )}
-           </button>
+          >
+            {isSaving ? (
+              <><Loader2 className="animate-spin" size={18} /> {isSyncing ? 'Selecciona cuenta...' : 'Guardando...'}</>
+            ) : (
+              <><Save size={18} /> {initialData ? 'Actualizar Ficha' : 'Guardar Ficha'}</>
+            )}
+          </button>
         </div>
       </div>
     </div>
