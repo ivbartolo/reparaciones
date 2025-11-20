@@ -270,20 +270,20 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 4th Quarter: Notes & Actions --- */}
-      <div className="sticky bottom-0 bg-white border-t-2 border-slate-200 flex flex-col z-30 shadow-[0_-8px_20px_rgba(0,0,0,0.15)]">
+      <div className="sticky bottom-0 w-full bg-white border-t-2 border-slate-200 flex flex-col z-50 shadow-[0_-8px_30px_rgba(0,0,0,0.2)]">
         {/* Notes */}
         <div className="px-4 pt-3 border-b border-slate-100">
           <textarea 
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Añadir notas de la reparación..."
-            className="w-full min-h-[60px] max-h-[80px] resize-none bg-slate-50 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="w-full h-16 resize-none bg-slate-50 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
             rows={2}
           />
         </div>
 
-        {/* Actions - Fixed bottom with safe area */}
-        <div className="px-4 pb-[max(1rem,env(safe-area-inset-bottom,0px)+0.5rem)] pt-3 flex flex-col sm:flex-row items-stretch gap-3">
+        {/* Actions - Fixed bottom with extra padding */}
+        <div className="px-4 pt-3 pb-6 sm:pb-6 flex flex-col sm:flex-row items-stretch gap-3 bg-white">
           {initialData && (
             <button 
               onClick={handleDelete}
