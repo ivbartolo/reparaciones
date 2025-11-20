@@ -216,7 +216,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 2nd & 3rd Quarter: Photo Grid (Up to 12) --- */}
-      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0">
+      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0 pb-32">
         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
           {photos.map((photo, index) => (
             <div key={index} className="aspect-[4/3] relative group rounded-lg overflow-hidden shadow-sm border border-slate-200 bg-white">
@@ -231,20 +231,20 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
           ))}
           
           {photos.length < 12 && (
-            <div className="aspect-[4/3] flex flex-col gap-2">
+            <div className="aspect-[4/3] flex flex-col gap-3">
               <button 
                 onClick={() => secondaryCameraInputRef.current?.click()}
-                className="flex-1 w-full flex flex-col items-center justify-center bg-white rounded-lg border border-slate-300 shadow-sm hover:bg-slate-50 active:bg-slate-100 transition-all"
+                className="flex-1 w-full flex flex-col items-center justify-center bg-white rounded-2xl border border-slate-300 shadow-md hover:bg-slate-50 active:bg-slate-100 transition-all py-4 gap-2"
               >
-                <Camera size={20} className="text-blue-600 mb-1" />
-                <span className="text-[10px] font-semibold text-slate-600">Cámara</span>
+                <Camera size={28} className="text-blue-600" />
+                <span className="text-sm font-semibold text-slate-700">Cámara</span>
               </button>
               <button 
                 onClick={() => secondaryGalleryInputRef.current?.click()}
-                className="flex-1 w-full flex flex-col items-center justify-center bg-white rounded-lg border border-slate-300 shadow-sm hover:bg-slate-50 active:bg-slate-100 transition-all"
+                className="flex-1 w-full flex flex-col items-center justify-center bg-white rounded-2xl border border-slate-300 shadow-md hover:bg-slate-50 active:bg-slate-100 transition-all py-4 gap-2"
               >
-                <ImageIcon size={20} className="text-purple-600 mb-1" />
-                <span className="text-[10px] font-semibold text-slate-600">Galería</span>
+                <ImageIcon size={28} className="text-purple-600" />
+                <span className="text-sm font-semibold text-slate-700">Galería</span>
               </button>
             </div>
           )}
@@ -270,7 +270,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 4th Quarter: Notes & Actions --- */}
-      <div className="flex-shrink-0 bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)]">
+      <div className="sticky bottom-0 bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)]">
         {/* Notes Half */}
         <div className="p-3 border-b border-slate-100">
           <textarea 
@@ -282,7 +282,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
         </div>
 
         {/* Actions Half */}
-        <div className="p-3 flex items-center justify-between gap-3">
+        <div className="p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] flex items-center justify-between gap-3">
            {initialData && (
              <button 
               onClick={handleDelete}
