@@ -216,7 +216,7 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 2nd & 3rd Quarter: Photo Grid (Up to 12) --- */}
-      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0 pb-32">
+      <div className="flex-1 bg-slate-100 p-2 overflow-y-auto min-h-0 pb-44 sm:pb-48">
         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
           {photos.map((photo, index) => (
             <div key={index} className="aspect-[4/3] relative group rounded-lg overflow-hidden shadow-sm border border-slate-200 bg-white">
@@ -270,25 +270,26 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
       </div>
 
       {/* --- 4th Quarter: Notes & Actions --- */}
-      <div className="sticky bottom-0 bg-white border-t border-slate-200 flex flex-col z-20 shadow-[0_-4px_15px_rgba(0,0,0,0.05)] px-4">
+      <div className="sticky bottom-0 bg-white border-t-2 border-slate-200 flex flex-col z-30 shadow-[0_-8px_20px_rgba(0,0,0,0.15)]">
         {/* Notes */}
-        <div className="pt-3 border-b border-slate-100">
+        <div className="px-4 pt-3 border-b border-slate-100">
           <textarea 
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Añadir notas de la reparación..."
-            className="w-full min-h-[64px] resize-none bg-slate-50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="w-full min-h-[60px] max-h-[80px] resize-none bg-slate-50 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+            rows={2}
           />
         </div>
 
-        {/* Actions */}
-        <div className="pb-[calc(1rem+env(safe-area-inset-bottom,0px))] pt-3 flex flex-col sm:flex-row items-stretch gap-3">
+        {/* Actions - Fixed bottom with safe area */}
+        <div className="px-4 pb-[max(1rem,env(safe-area-inset-bottom,0px)+0.5rem)] pt-3 flex flex-col sm:flex-row items-stretch gap-3">
           {initialData && (
             <button 
               onClick={handleDelete}
-              className="sm:flex-1 h-12 bg-red-50 text-red-600 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-red-100 transition-colors"
+              className="sm:flex-1 h-14 sm:h-16 bg-red-50 text-red-600 rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center gap-2 hover:bg-red-100 active:bg-red-200 transition-colors"
             >
-              <Trash2 size={18} />
+              <Trash2 size={20} />
               Eliminar
             </button>
           )}
@@ -296,14 +297,14 @@ export const WorkTab: React.FC<WorkTabProps> = ({ initialData, onSaveComplete, o
           <button 
             onClick={handleSave}
             disabled={isSaving || isSyncing}
-            className={`sm:flex-[2] h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-white transition-all shadow-lg
-              ${isSaving ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}
+            className={`sm:flex-[2] h-14 sm:h-16 rounded-xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 text-white transition-all shadow-xl active:scale-[0.98]
+              ${isSaving ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'}
             `}
           >
             {isSaving ? (
-              <><Loader2 className="animate-spin" size={18} /> {isSyncing ? 'Selecciona cuenta...' : 'Guardando...'}</>
+              <><Loader2 className="animate-spin" size={22} /> <span className="hidden sm:inline">{isSyncing ? 'Selecciona cuenta...' : 'Guardando...'}</span><span className="sm:hidden">{isSyncing ? 'Sincronizando...' : 'Guardando...'}</span></>
             ) : (
-              <><Save size={18} /> {initialData ? 'Actualizar Ficha' : 'Guardar Ficha'}</>
+              <><Save size={22} /> <span>{initialData ? 'Actualizar Ficha' : 'Guardar Ficha'}</span></>
             )}
           </button>
         </div>
